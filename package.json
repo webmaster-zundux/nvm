@@ -1,13 +1,13 @@
 {
   "name": "nvm",
-  "version": "0.35.3",
+  "version": "0.37.2",
   "description": "Node Version Manager - Simple bash script to manage multiple active node.js versions",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "test": "shell=$(basename -- $(ps -o comm= $(ps -o ppid= -p $PPID)) | sed 's/^-//'); make test-$shell",
-    "test/fast": "shell=$(basename -- $(ps -o comm= $(ps -o ppid= -p $PPID)) | sed 's/^-//'); make TEST_SUITE=fast test-$shell",
+    "test/fast": "shell=$(basename -- $(ps -o comm= $(ps -o ppid= -p $PPID)) | sed 's/^-//'); env -i TERM=\"$TERM\" bash -lc \"make TEST_SUITE=fast test-$shell\"",
     "test/slow": "shell=$(basename -- $(ps -o comm= $(ps -o ppid= -p $PPID)) | sed 's/^-//'); make TEST_SUITE=slow test-$shell",
     "test/install_script": "shell=$(basename -- $(ps -o comm= $(ps -o ppid= -p $PPID)) | sed 's/^-//'); make TEST_SUITE=install_script test-$shell",
     "test/installation": "npm run --silent test/installation/node && npm run --silent test/installation/iojs",
@@ -37,10 +37,10 @@
   "homepage": "https://github.com/nvm-sh/nvm",
   "devDependencies": {
     "dockerfile_lint": "^0.3.2",
+    "doctoc": "^2.0.0",
     "eclint": "^2.6.0",
-    "replace": "^0.3.0",
-    "semver": "^5.0.1",
-    "urchin": "^0.0.5",
-    "doctoc": "^1.2.0"
+    "replace": "^1.2.0",
+    "semver": "^7.3.4",
+    "urchin": "^0.0.5"
   }
 }
